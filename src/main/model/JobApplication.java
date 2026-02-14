@@ -15,9 +15,10 @@ public class JobApplication {
     private int id;
 
     private Status status;
+    private List<Status> statusHistory;
+    private List<LocalDate> statusDates;
 
     private LocalDate dateApplied;
-    private LocalDate lastUpdatedDate;
 
     private List<String> notes;
     
@@ -34,16 +35,20 @@ public class JobApplication {
     // REQUIRES: newStatus != null
     // MODIFIES: this
     // EFFECTS: updates the status of this application to newStatus
+    //          records the newStatus and current  date in statusHistory and statusDates
     //          if newStatus is APPLIED and dateApplied is null, dateApplied to set to
     //          the current date, otherwise, dateApplied is unchanged. 
     public void updateStatus(Status newStatus) {
         // stub
     }
 
-    // EFFECTS: returns date when application was last modified
-    public LocalDate getLastUpdatedDate() {
-        return null;
+    // EFFECTS: returns true if the application was ever in the given state,
+    //          otherwise, return false
+    public boolean wasEverInStatus(Status queryStatus) {
+        return false;
     }
+
+    // NOTES methods
 
     // REQUIRES: note != null
     // MODIFIES: this
@@ -68,20 +73,16 @@ public class JobApplication {
     public int getNoteCount() {
         return -1;
     }
-
-    // EFFECTS: returns true if this application has ever been applied to,
-    //          otherwise, returns false
-    public boolean wasEverApplied() {
-        return false;
-    } 
-
+    
     // MODIFIES: this
     // EFFECTS: removes all notes from this application
     public void clearNotes() {
         // stub
     }
-    
 
+    public boolean hasNoteContaining(String keyword) {
+        return false; // stub
+    }
 
     // Getter and Setter methods
     public int getId() {
@@ -103,6 +104,15 @@ public class JobApplication {
     public Status getStatus() {
         return null;
     }
+
+    public List<Status> getStatusHistory() {
+        return null;
+    }
+
+    public List<LocalDate> getStatusDates() {
+        return null;
+    }
+
 
     public LocalDate getDateApplied() {
         return null;
