@@ -22,13 +22,14 @@ public class JobApplication {
 
     private List<String> notes;
     
-    // REQUIRES: company, jobTitle, and location != null
-    // EFFECTS: creates a JobApplication object with a given company, jobTitle and location,
-    //          assigns a unique positive integer id 
+    // REQUIRES: id > 0 & company, jobTitle, and location != null
+    // EFFECTS: creates a JobApplication object with a given id, company, jobTitle and location,
     //          initializes status to NOT_APPLIED
-    //          initializes dateApplied to null
+    //          initializes statusHistory with one entry containing:
+    //              - status = NOT_APPLIED
+    //              - date = date of object creation
     //          initializes notes to an empty list 
-    public JobApplication(String company, String jobTitle, String location) {
+    public JobApplication(int id, String company, String jobTitle, String location) {
         // stub
     }
 
@@ -84,6 +85,7 @@ public class JobApplication {
         return false; // stub
     }
 
+    
     // Getter and Setter methods
     public int getId() {
         return -1;
