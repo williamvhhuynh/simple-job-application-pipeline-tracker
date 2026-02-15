@@ -1,6 +1,7 @@
 package model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 // Represents a single job application with identiying information, current application status,
@@ -30,7 +31,22 @@ public class JobApplication {
     //              - date = date of object creation
     //          initializes notes to an empty list 
     public JobApplication(int id, String company, String jobTitle, String location) {
-        // stub
+        this.id = id;
+        this.company = company;
+        this.jobTitle = jobTitle;
+        this.location = location;
+
+        status = Status.NOT_APPLIED;
+        statusHistory = new ArrayList<>();
+        statusDates = new ArrayList<>();
+        
+        LocalDate today = LocalDate.now();
+        statusHistory.add(Status.NOT_APPLIED);
+        statusDates.add(today);
+
+        dateApplied = null;
+
+        notes = new ArrayList<>();
     }
 
     // REQUIRES: newStatus != null
@@ -40,13 +56,21 @@ public class JobApplication {
     //          if newStatus is APPLIED and dateApplied is null, dateApplied to set to
     //          the current date, otherwise, dateApplied is unchanged. 
     public void updateStatus(Status newStatus) {
-        // stub
+        status = newStatus;
+
+        LocalDate today = LocalDate.now();
+        statusHistory.add(newStatus);
+        statusDates.add(today);
+
+        if (newStatus == Status.APPLIED && dateApplied == null) {
+            dateApplied = today;
+        }
     }
 
     // EFFECTS: returns true if the application was ever in the given state,
     //          otherwise, return false
     public boolean wasEverInStatus(Status queryStatus) {
-        return false;
+        return statusHistory.contains(queryStatus);
     }
 
     // NOTES methods
@@ -55,72 +79,78 @@ public class JobApplication {
     // MODIFIES: this
     // EFFECTS: adds a note to the end of the notes list
     public void addNote(String note) {
-        // stub
+        notes.add(note);
     }
 
     // REQUIRES: 0 <= index < notes.size()
     // MODIFIES: this
     // EFFECTS: removes the note from the notes list at a given index
     public void removeNote(int index) {
-        // stub
+        notes.remove(index);
     }
 
     // EFFECTS: returns true if this application has at least one note, returns false otherwise
     public boolean hasNotes() {
-        return false;
+        return !notes.isEmpty();
     }
 
     // EFFECTS: returns the number of notes stored in this application
     public int getNoteCount() {
-        return -1;
+        return notes.size();
     }
     
     // MODIFIES: this
     // EFFECTS: removes all notes from this application
     public void clearNotes() {
-        // stub
+        notes.clear();
     }
 
     public boolean hasNoteContaining(String keyword) {
-        return false; // stub
+        for (String note : notes) {
+            if (note.contains(keyword)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     
     // Getter and Setter methods
     public int getId() {
-        return -1;
+        return id;
     }
 
     public String getCompany() {
-        return "";
+        return company;
     }
 
     public String getJobTitle() {
-        return "";
+        return jobTitle;
     }
 
     public String getLocation() {
-        return "";
+        return location;
     }
 
     public Status getStatus() {
-        return null;
+        return status;
     }
 
     public List<Status> getStatusHistory() {
-        return null;
+        return statusHistory;
     }
 
     public List<LocalDate> getStatusDates() {
-        return null;
+        return statusDates;
     }
 
 
     public LocalDate getDateApplied() {
-        return null;
+        return dateApplied;
     }
 
     public List<String> getNotes() {
-        return null;
+        return notes;
     }
 }

@@ -10,16 +10,12 @@ import java.time.LocalDate;
 public class TestJobApplication {
 
     private JobApplication testApplication1;
-    private JobApplication testApplication2;
     
     @BeforeEach
     void runBefore() {
         testApplication1 = new JobApplication(1, "CCLIM", 
                                             "Product Specialist Analyst",   
                                             "Vancouver");
-        testApplication2 = new JobApplication(2, "AIMCo", 
-                                            "Student, Securities Operations & Pricing (Summer 2026)", 
-                                            "Edmonton");
     }
 
     @Test
@@ -47,6 +43,18 @@ public class TestJobApplication {
         assertEquals(Status.APPLIED, testApplication1.getStatusHistory().get(1));
         assertEquals(LocalDate.now(), testApplication1.getStatusDates().get(1));
         assertEquals(LocalDate.now(), testApplication1.getDateApplied());
+
+        LocalDate originalDateApplied = testApplication1.getDateApplied();
+        testApplication1.updateStatus(Status.ONLINE_ASSESSMENT);
+
+        assertEquals(Status.ONLINE_ASSESSMENT, testApplication1.getStatus());
+        assertEquals(Status.ONLINE_ASSESSMENT, testApplication1.getStatusHistory().get(2));
+
+        testApplication1.updateStatus(Status.APPLIED);
+
+        assertEquals(Status.APPLIED, testApplication1.getStatus());
+        assertEquals(originalDateApplied, testApplication1.getDateApplied());
+
     }
 
     @Test
