@@ -67,13 +67,20 @@ public class ApplicationPipelineApp {
     // EFFECTS: process commands
     private void processCommand(String command) {
         switch (command) {
-            case "a": addApplication(); break;
-            case "r": removeApplication(); break;
-            case "v": viewAllApplications(); break;
-            case "f": findApplication(); break;
-            case "u": updateStatus(); break;
-            case "n": addNote(); break;
-            case "d": removeNote(); break;
+            case "a": addApplication(); 
+            break;
+            case "r": removeApplication(); 
+            break;
+            case "v": viewAllApplications(); 
+            break;
+            case "f": findApplication(); 
+            break;
+            case "u": updateStatus(); 
+            break;
+            case "n": addNote(); 
+            break;
+            case "d": removeNote(); 
+            break;
             default:
                 System.out.println("Invalid selection.");
         }
@@ -111,7 +118,7 @@ public class ApplicationPipelineApp {
 
     // EFFECTS: prints all applications in the pipeline with all details
     private void viewAllApplications() {
-         List<JobApplication> apps = pipeline.getAllApplications();
+        List<JobApplication> apps = pipeline.getAllApplications();
 
         if (apps.isEmpty()) {
             System.out.println("No applications.");
@@ -130,24 +137,19 @@ public class ApplicationPipelineApp {
 
         if (!pipeline.containsApplication(id)) {
             System.out.println("No application found with ID " + id);
-            return ;
-        }
-
-        JobApplication app = pipeline.getApplicationById(id);
-
-        if (app == null) {
+            return;
         } else {
-            printApplication(app);
-        }
-
-        if (app.hasNotes()) {
-            System.out.println("Notes:");
-            List<String> notes = app.getNotes();
-            for (int i = 0; i < notes.size(); i++) {
-                System.out.println((i + 1) + ". " + notes.get(i));
+            printApplication(pipeline.getApplicationById(id));
+            
+            if (pipeline.getApplicationById(id).hasNotes()) {
+                System.out.println("Notes:");
+                List<String> notes = pipeline.getApplicationById(id).getNotes();
+                for (int i = 0; i < notes.size(); i++) {
+                    System.out.println((i + 1) + ". " + notes.get(i));
+                }
+            } else {
+                System.out.println("No notes for this application.");
             }
-        } else {
-            System.out.println("No notes for this application.");
         }
     }
 
@@ -231,7 +233,7 @@ public class ApplicationPipelineApp {
     }
 
     // EFFECTS: prints all details for a given Job Application
-     private void printApplication(JobApplication app) {
+    private void printApplication(JobApplication app) {
         System.out.println("----------------");
         System.out.println("ID: " + app.getId());
         System.out.println("Company: " + app.getCompany());
