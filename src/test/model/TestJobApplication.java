@@ -9,8 +9,8 @@ import java.time.LocalDate;
 
 public class TestJobApplication {
 
-    JobApplication testApplication1;
-    JobApplication testApplication2;
+    private JobApplication testApplication1;
+    private JobApplication testApplication2;
     
     @BeforeEach
     void runBefore() {
