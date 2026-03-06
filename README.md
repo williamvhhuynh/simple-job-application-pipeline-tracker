@@ -16,4 +16,6 @@ I am interested in this project as I have custom made Notion databases and excel
 - As a user, I want to be able to view a list of all of the applications I have recorded into the tracker and filter them by status. 
 - As a user, I want to be able to update the status of an application.
 - As a user, I want to be able to remove an application from the tracker. 
-- As a user, I want to be able to see summary statistics such as how many applications are in a current status. 
+- As a user, I want to be able to see summary statistics such as how many applications are in a current status.
+- As a user, I want to be able to save my applications stored in the  tracker to file
+- As a user, I want to be able to load the tracker with my saved applications from file 
