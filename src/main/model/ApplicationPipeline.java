@@ -3,8 +3,12 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 // Represents a collection of job applications 
-public class ApplicationPipeline {
+public class ApplicationPipeline implements Writable {
 
     private List<JobApplication> applications;
     private int nextId;
@@ -67,5 +71,22 @@ public class ApplicationPipeline {
         return nextId;
     }
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("jobApplications", jobApplicationsToJson());
+        return json;
+    }
+
+    // EFFECTS: returns jobApplications in this portfolio as a JSON array
+    private JSONArray jobApplicationsToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (JobApplication ja : applications) {
+            jsonArray.put(ja.toJson());
+        }
+
+        return jsonArray;
+    }
 
 }

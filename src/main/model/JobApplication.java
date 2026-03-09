@@ -4,10 +4,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONObject;
+
+import persistence.Writable;
+
 // Represents a single job application with identiying information, current application status,
 // application date, and user notes.  
-public class JobApplication {
-    
+public class JobApplication implements Writable {
     
     private String company;
     private String jobTitle;
@@ -152,5 +155,20 @@ public class JobApplication {
 
     public List<String> getNotes() {
         return notes;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("company", company);
+        json.put("jobTitle", jobTitle);
+        json.put("location", location);
+        json.put("id", id);
+        json.put("Status", status);
+        json.put("statusHistory", statusHistory);
+        json.put("dateApplied", dateApplied);
+        json.put("notes", notes);
+
+        return json;
     }
 }
