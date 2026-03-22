@@ -34,6 +34,7 @@ public class PipelineGUI extends JFrame {
         initializeLayout();
 
         setupDisplayArea();
+        setupVisualComponent();
         setupButtons();
         addFileMenu();
 
