@@ -1,5 +1,7 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -124,4 +126,28 @@ public class TestJobApplication {
         assertTrue(testApplication1.hasNoteContaining("LinkedIn"));
         assertFalse(testApplication1.hasNoteContaining("Referral"));
     }
+
+    @Test
+    void testToJsonWithDateApplied() {
+        JSONObject jsonNull = testApplication1.toJson();
+        assertEquals(JSONObject.NULL, jsonNull.get("dateApplied"));
+
+        testApplication1.updateStatus(Status.APPLIED);
+        JSONObject jsonWithDate = testApplication1.toJson();
+        
+        assertEquals(LocalDate.now().toString(), jsonWithDate.getString("dateApplied"));
+    }
+
+    @Test
+    void testToJsonWithNotes() {
+        testApplication1.addNote("First note");
+        testApplication1.addNote("Second note");
+
+        JSONObject json = testApplication1.toJson();
+        JSONArray notesArray = json.getJSONArray("notes");
+
+        assertEquals(2, notesArray.length());
+        assertEquals("First note", notesArray.getString(0));
+        assertEquals("Second note", notesArray.getString(1));
+}
 }

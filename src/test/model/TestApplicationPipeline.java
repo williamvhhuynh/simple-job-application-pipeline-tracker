@@ -130,4 +130,17 @@ public class TestApplicationPipeline {
                                 "Vancouver");
         assertEquals(3, pipeline.getNextId());
     }
+
+    @Test
+    void testFullJobApplicationToPipelineUpdateNextId() {
+        JobApplication highIdApp = new JobApplication(10, "Tesla", "Software Engineer", "Remote");
+        pipeline.fullJobApplicationToPipeline(highIdApp);
+        
+        assertEquals(11, pipeline.getNextId());
+        assertTrue(pipeline.containsApplication(10));
+        
+        JobApplication lowIdApp = new JobApplication(5, "Apple", "Dev", "San Francisco");
+        pipeline.fullJobApplicationToPipeline(lowIdApp);
+        assertEquals(11, pipeline.getNextId()); // Should remain 11
+    }
 }
