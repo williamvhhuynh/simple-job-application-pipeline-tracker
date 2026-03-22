@@ -120,19 +120,63 @@ public class PipelineGUI extends JFrame {
     // MODIFIES: this
     // EFFECTS: Prompts user with inputs to add a new JobApplication to the pipeline
     private void handleAddApplication() {
-        // stub
+        String company = JOptionPane.showInputDialog(this, "Company Name:");
+        String title = JOptionPane.showInputDialog(this, "Job Title:");
+        String location = JOptionPane.showInputDialog(this, "Location:");
+
+        if (company != null && title != null && location != null) {
+            pipeline.addApplication(company, title, location);
+            statusLabel.setText("Application added: " + company);
+            refreshDisplay();
+        }
     }
 
     // MODIFIES: this
     // EFFECTS: Prompts user for an ID and provides a dropdown to update the status
     private void handleUpdateStatus() {
-        // stub
+        String idStr = JOptionPane.showInputDialog(this, "Enter Application ID to update:");
+        if (idStr == null) {
+            return;
+        }
+
+        try {
+            int id = Integer.parseInt(idStr);
+            JobApplication ja = pipeline.getApplicationById(id);
+            
+            if (ja != null) {
+                Status[] options = Status.values();
+                Status selected = (Status) JOptionPane.showInputDialog(this, "New Status:",
+                        "Update Status", JOptionPane.QUESTION_MESSAGE, null, options, ja.getStatus());
+                
+                if (selected != null) {
+                    ja.updateStatus(selected);
+                    statusLabel.setText("Updated ID " + id + " to " + selected);
+                    refreshDisplay();
+                }
+            } else {
+                statusLabel.setText("Error: ID " + id + " not found.");
+            }
+        } catch (NumberFormatException e) {
+            statusLabel.setText("Error: Invalid ID format.");
+        }
     }
 
     // MODIFIES: this
     // EFFECTS: adds the file menu for Save/Loaf functionality
     private void addFileMenu() {
-        // stub
+        JMenuBar menuBar = new JMenuBar();
+        JMenu fileMenu = new JMenu("File");
+
+        JMenuItem saveItem = new JMenuItem("Save Pipeline");
+        saveItem.addActionListener(e -> savePipeline());
+        fileMenu.add(saveItem);
+
+        JMenuItem loadItem = new JMenuItem("Load Pipeline");
+        loadItem.addActionListener(e -> loadPipeline());
+        fileMenu.add(loadItem);
+
+        menuBar.add(fileMenu);
+        setJMenuBar(menuBar);
     }
 
     // EFFECTS: Saves pipeline to file.
