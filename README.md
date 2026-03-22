@@ -19,3 +19,11 @@ I am interested in this project as I have custom made Notion databases and excel
 - As a user, I want to be able to see summary statistics such as how many applications are in a current status.
 - As a user, I want to be able to save my applications stored in the  tracker to file
 - As a user, I want to be able to load the tracker with my saved applications from file 
+
+## Instructions for End User
+- You can view the panel that displays the Job Applications that have been added to the pipeline on the main screen.
+- You can add a Job Application to the pipeline by navigating to the "Add Application" button at the bottom left of the screen. You will be prompted to input details related to the application. This relates to the user story of *"As a user, I want to be able to add an application to an application pipeline tracker and specify the job title, company, location, date applied, and current status."*
+- You can update the status of a job application by navigating to the "Update Status" button at the bottom of the screen. You will be prompted with a dropdown menu to choose which status you will want to update it to. This related to the user story of *"As a user, I want to be able to update the status of an application."*
+- You can locate my visual component on the right side of the screen. 
+- You can save the state of my application by navigating to the top left File menu option, and clicking save.
+- You can load the state of my application by navigating to the top left File mnu option, and clicking load. 
