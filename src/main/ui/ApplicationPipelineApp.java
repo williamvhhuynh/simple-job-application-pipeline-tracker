@@ -14,6 +14,9 @@ import persistence.JsonWriter;
 
 import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 
+// Referenced save and load methods from CPSC 210 Team
+// https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
+
 // Job Application Pipeline application
 @ExcludeFromJacocoGeneratedReport
 public class ApplicationPipelineApp {
