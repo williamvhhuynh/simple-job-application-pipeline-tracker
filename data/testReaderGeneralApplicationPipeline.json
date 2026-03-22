@@ -1,5 +1,6 @@
 {
-    "applications" : [
+    "nextId" : 3, 
+    "jobApplications" : [
         {
             "company" : "Connor, Clark & Lunn Investment Management Ltd.",
             "jobTitle" : "Product Specialist Analyst, Fundamental Equity",
@@ -7,7 +8,7 @@
 
             "id" : 1,
 
-            "Status" : "APPLIED",
+            "status" : "APPLIED",
             "statusHistory" : [
                 "NOT_APPLIED",
                 "APPLIED"
@@ -30,7 +31,7 @@
 
             "id" : 2,
 
-            "Status" : "NOT_APPLIED",
+            "status" : "NOT_APPLIED",
             "statusHistory" : [
                 "NOT_APPLIED"
             ],

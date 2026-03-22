@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import persistence.Writable;
@@ -148,7 +149,6 @@ public class JobApplication implements Writable {
         return statusDates;
     }
 
-
     public LocalDate getDateApplied() {
         return dateApplied;
     }
@@ -164,11 +164,63 @@ public class JobApplication implements Writable {
         json.put("jobTitle", jobTitle);
         json.put("location", location);
         json.put("id", id);
-        json.put("Status", status);
-        json.put("statusHistory", statusHistory);
-        json.put("dateApplied", dateApplied);
-        json.put("notes", notes);
+        json.put("status", status.getNameValue());
+        json.put("statusHistory", statusHistoryToJson());
+        json.put("statusDates", statusDatesToJson());
+        json.put("dateApplied", dateApplied == null ? JSONObject.NULL : dateApplied.toString());
+        json.put("notes", notesToJson());
 
         return json;
     }
+
+    // EFFECTS: helper method to write statusHistory to Json
+    private JSONArray statusHistoryToJson() {
+        JSONArray array = new JSONArray();
+
+        for (Status s : statusHistory) {
+            array.put(s.getNameValue());
+        }
+
+        return array;
+    }
+
+    // EFFECTS: helper method to write statusDates to json
+    private JSONArray statusDatesToJson() {
+        JSONArray array = new JSONArray();
+
+        for (LocalDate d : statusDates) {
+            array.put(d.toString()); // ISO format
+        }
+
+        return array;
+    }
+
+    // EFFECTS: helper method to write notes to json
+    private JSONArray notesToJson() {
+        JSONArray array = new JSONArray();
+
+        for (String note : notes) {
+            array.put(note);
+        }
+
+        return array;
+    }
+
+    // EFFECTS: Full JobApplication constructor to construct an exisiting application from Json with all,
+    //          current data on file about the application. 
+    public JobApplication(int id, String company, String jobTitle, String location,
+                        Status status, List<Status> statusHistory,
+                        List<LocalDate> statusDates, LocalDate dateApplied,
+                        List<String> notes) {
+        this.id = id;
+        this.company = company;
+        this.jobTitle = jobTitle;
+        this.location = location;
+        this.status = status;
+        this.statusHistory = statusHistory;
+        this.statusDates = statusDates;
+        this.dateApplied = dateApplied;
+        this.notes = notes;
+    }
 }
+

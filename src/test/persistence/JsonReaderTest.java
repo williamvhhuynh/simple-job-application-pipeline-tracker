@@ -58,7 +58,7 @@ public class JsonReaderTest extends JsonTest {
             statusDates1.add(LocalDate.of(2026, 03, 06));
             List<String> notes1 = new ArrayList<String>();
             notes1.add("Submitted through company portal.");
-            notes1.add("Connected with hiring manager");
+            notes1.add("Connected with hiring manager.");
             checkApplication("Connor, Clark & Lunn Investment Management Ltd.",
                             "Product Specialist Analyst, Fundamental Equity",
                             "Vancouver, BC",
@@ -82,7 +82,7 @@ public class JsonReaderTest extends JsonTest {
                             Status.NOT_APPLIED,
                             statusHistory2,
                             statusDates2,
-                            LocalDate.of(2026, 03, 07),
+                            null,
                             notes2,
                             applications.get(1));
         } catch (IOException e) {

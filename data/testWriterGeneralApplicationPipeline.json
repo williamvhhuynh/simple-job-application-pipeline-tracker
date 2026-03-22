@@ -1,0 +1,27 @@
+{
+    "nextId": 3,
+    "jobApplications": [
+        {
+            "statusHistory": ["NOT_APPLIED"],
+            "notes": [],
+            "jobTitle": "Product Specialist Analyst, Fundamental Equity",
+            "company": "Connor, Clark & Lunn Investment Management Ltd.",
+            "location": "Vancouver, BC",
+            "id": 1,
+            "dateApplied": null,
+            "status": "NOT_APPLIED",
+            "statusDates": ["2026-03-22"]
+        },
+        {
+            "statusHistory": ["NOT_APPLIED"],
+            "notes": [],
+            "jobTitle": "Student, Security Operations & Pricing",
+            "company": "Alberta Investment Management Company",
+            "location": "Edmonton, AB",
+            "id": 2,
+            "dateApplied": null,
+            "status": "NOT_APPLIED",
+            "statusDates": ["2026-03-22"]
+        }
+    ]
+}

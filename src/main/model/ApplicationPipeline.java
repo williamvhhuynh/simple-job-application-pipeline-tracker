@@ -31,7 +31,6 @@ public class ApplicationPipeline implements Writable {
         return newApplication;
     }
 
-
     // REQUIRES: application with id exists in the pipeline
     // MODIFIES: this
     // EFFECTS: removes the JobApplication with the given id from the pipeline
@@ -75,6 +74,7 @@ public class ApplicationPipeline implements Writable {
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("jobApplications", jobApplicationsToJson());
+        json.put("nextId", nextId);
         return json;
     }
 
@@ -89,4 +89,18 @@ public class ApplicationPipeline implements Writable {
         return jsonArray;
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds job application with all details to application pipeline
+    public void fullJobApplicationToPipeline(JobApplication application) {
+        applications.add(application);
+
+        if (application.getId() >= nextId) {
+            nextId = application.getId() + 1;
+        }
+    }
+
+    // EFFECTS: sets nextId
+    public void setNextId(int nextId) {
+        this.nextId = nextId;
+    }
 }

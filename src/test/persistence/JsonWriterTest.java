@@ -69,6 +69,7 @@ public class JsonWriterTest extends JsonTest {
             statusHistory.add(Status.NOT_APPLIED);
             List<LocalDate> statusDates = new ArrayList<LocalDate>();
             statusDates.add(LocalDate.now());
+            List<String> expectedNotes = new ArrayList<>();
             checkApplication("Connor, Clark & Lunn Investment Management Ltd.",
                             "Product Specialist Analyst, Fundamental Equity",
                             "Vancouver, BC",
@@ -77,7 +78,7 @@ public class JsonWriterTest extends JsonTest {
                             statusHistory,
                             statusDates,
                             null,
-                            null,
+                            expectedNotes,
                             jobApplications.get(0));
             checkApplication("Alberta Investment Management Company",
                             "Student, Security Operations & Pricing",
@@ -87,7 +88,7 @@ public class JsonWriterTest extends JsonTest {
                             statusHistory,
                             statusDates,
                             null,
-                            null,
+                            expectedNotes,
                             jobApplications.get(1));
         } catch (IOException e) {
             fail("Exception should not have been thrown");
