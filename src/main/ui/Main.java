@@ -1,5 +1,8 @@
 package ui;
 
+import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
+
+@ExcludeFromJacocoGeneratedReport
 public class Main {
     
     // EFFECTS: Creates an instance of ApplicationPipelineApp

@@ -3,14 +3,24 @@ package ui;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import model.ApplicationPipeline;
 import model.JobApplication;
 import model.Status;
+import persistence.JsonReader;
+import persistence.JsonWriter;
+
+import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 
 // Job Application Pipeline application
+@ExcludeFromJacocoGeneratedReport
 public class ApplicationPipelineApp {
 
+    private static final String JSON_STORE = "./data/applicationpipeline";
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
     private ApplicationPipeline pipeline;
     private Scanner input;
 
@@ -48,6 +58,8 @@ public class ApplicationPipelineApp {
         pipeline = new ApplicationPipeline();
         input = new Scanner(System.in);
         input.useDelimiter("\r?\n|\r");
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
     }
 
     // EFFECTS: displays menu
@@ -60,6 +72,8 @@ public class ApplicationPipelineApp {
         System.out.println("\tu -> update application status");
         System.out.println("\tn -> add note");
         System.out.println("\td -> delete note");
+        System.out.println("\ts -> save pipeline to file");
+        System.out.println("\tl -> load pipeline from file");
         System.out.println("\tq -> quit");
     }
 
@@ -80,6 +94,10 @@ public class ApplicationPipelineApp {
             case "n": addNote(); 
             break;
             case "d": removeNote(); 
+            break;
+            case "s": saveApplicationPipeline();
+            break;
+            case "l": loadPipeline(); 
             break;
             default:
                 System.out.println("Invalid selection.");
@@ -263,6 +281,29 @@ public class ApplicationPipelineApp {
                 System.out.println("Invalid input. Please enter a postive integer.");
                 input.nextLine();
             }
+        }
+    }
+
+    // EFFECTS: saves the pipeline to file
+    private void saveApplicationPipeline() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(pipeline);
+            jsonWriter.close();
+            System.out.println("Saved to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads pipeline from file
+    private void loadPipeline() {
+        try {
+            pipeline = jsonReader.read();
+            System.out.println("Loaded from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
         }
     }
 }
