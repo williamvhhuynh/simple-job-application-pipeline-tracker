@@ -27,3 +27,21 @@ I am interested in this project as I have custom made Notion databases and excel
 - You can locate my visual component on the right side of the screen. 
 - You can save the state of my application by navigating to the top left File menu option, and clicking save.
 - You can load the state of my application by navigating to the top left File mnu option, and clicking load. 
+
+## Phase 4: Task 2
+Added application (ID: 1) Amazon - SDE-1
+Mon Mar 23 16:15:24 PDT 2026
+Application (ID: 1) Status Update: NOT_APPLIED -> ONLINE_ASSESSMENT
+Mon Mar 23 16:16:05 PDT 2026
+Added application (ID: 2) Microsoft - Software Engineer - Gears of War - The Coalition: Internship Opportunities
+Mon Mar 23 16:16:15 PDT 2026
+Application (ID: 2) Status Update: NOT_APPLIED -> APPLIED
+Mon Mar 23 16:17:23 PDT 2026
+Added application (ID: 3) SAP - SAP iXp Intern - Agile Developer, Business Data Cloud
+Added application (ID: 3) SAP - SAP iXp Intern - Agile Developer, Business Data Cloud
+Mon Mar 23 16:17:28 PDT 2026
+Application (ID: 3) Status Update: NOT_APPLIED -> APPLIED
+Mon Mar 23 16:18:21 PDT 2026
+Added application (ID: 4) Connor, Clark & Lunn Investment Management Ltd. - Product Specialist Analyst, Fundamental Equity
+Mon Mar 23 16:18:28 PDT 2026
+Application (ID: 4) Status Update: NOT_APPLIED -> REJECTED
