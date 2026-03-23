@@ -37,6 +37,7 @@ public class PipelineGUI extends JFrame {
         setupVisualComponent();
         setupButtons();
         addFileMenu();
+        initWindowListener();
 
         refreshDisplay();
         setVisible(true);
@@ -86,10 +87,31 @@ public class PipelineGUI extends JFrame {
         buttonPanel.add(updateButton);
 
         JButton quitButton = new JButton("Quit");
-        quitButton.addActionListener(e -> System.exit(0));
+        quitButton.addActionListener(e -> printEventLogAndExit());
         buttonPanel.add(quitButton);
 
         add(buttonPanel, BorderLayout.SOUTH);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: initializes a window listener
+    private void initWindowListener() {
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                printEventLogAndExit();
+            }
+        });
+    }
+
+    // MODIFIES: this
+    // EFFECTS: prints event logs and exits
+    private void printEventLogAndExit() {
+        System.out.println("=== Event Log ===");
+        for (model.Event event : model.EventLog.getInstance()) {
+            System.out.println(event);
+        }
+        System.exit(0);
     }
 
     // MODIFIES: this

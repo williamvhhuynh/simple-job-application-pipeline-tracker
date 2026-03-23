@@ -20,6 +20,7 @@ public class JobApplication implements Writable {
     private int id;
 
     private Status status;
+    private Status oldStatus;
     private List<Status> statusHistory;
     private List<LocalDate> statusDates;
 
@@ -60,7 +61,11 @@ public class JobApplication implements Writable {
     //          if newStatus is APPLIED and dateApplied is null, dateApplied to set to
     //          the current date, otherwise, dateApplied is unchanged. 
     public void updateStatus(Status newStatus) {
+        oldStatus = status;
         status = newStatus;
+
+        EventLog.getInstance().logEvent(new Event("Application (ID: " + id + ") Status Update: " + oldStatus
+                                                    + " -> " + status));
 
         LocalDate today = LocalDate.now();
         statusHistory.add(newStatus);

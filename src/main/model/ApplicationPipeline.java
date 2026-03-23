@@ -28,6 +28,9 @@ public class ApplicationPipeline implements Writable {
         applications.add(newApplication);
         nextId++;
 
+        EventLog.getInstance().logEvent(new Event("Added application (ID: " + newApplication.getId() + ") " 
+                                                    + company + " - " + jobTitle));
+
         return newApplication;
     }
 
