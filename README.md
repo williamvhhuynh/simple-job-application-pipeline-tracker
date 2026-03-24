@@ -44,3 +44,7 @@ Mon Mar 23 16:18:21 PDT 2026<br>
 Added application (ID: 4) Connor, Clark & Lunn Investment Management Ltd. - Product Specialist Analyst, Fundamental Equity<br>
 Mon Mar 23 16:18:28 PDT 2026<br>
 Application (ID: 4) Status Update: NOT_APPLIED -> REJECTED<br>
+
+## Phase 4: Task 3
+1. Implement the Observer Pattern: Currently, my GUI classes are tightly coupled with ApplicationPipeline. I am manually calling refreshDisplay() ore repaint() when I make changes to the ApplicationPipeline. Implementing the Observer Pattern will improve decoupling. The subject would be the ApplicationPipeline, and the Observer would be the GUI.
+2. Abstract away persistence methods from the PipelineGUI class. Currently, jsonReading and jsonWriting class specific logic happens within the GUI class itself. This violates the Single Responsibility Principle. To fix this, we could add another layer that holds the ApplicationPipeline(), and then deals with the persistence logic. This would also remove duplicate code as this persistence logic is also handled in the console-based UI class. 
